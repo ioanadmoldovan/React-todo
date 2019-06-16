@@ -4,33 +4,30 @@ import Todos from './Todos';
 class AddTodos extends Component{
 
     state = {
-        task: null,
-        priority: null
+        task: ''
     }
     
     handleChange = (e) => {
         return(
             this.setState({
-                [ e.target.id ]: e.target.value
+                task: e.target.value
             })
         )
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addTodos( this.state ) 
+        this.props.addTodos( this.state );
+        this.setState({
+            task: ''
+        })
     }
 
     render(){
         return(
             <form onSubmit={ this.handleSubmit }>
                 <label htmlFor={ 'task' }> Task: </label>
-                <input type="text" id='task' onChange={ this.handleChange } />
-
-                <label htmlFor={ 'priority' }> Priority: </label>
-                <input type="text" id='priority' onChange={ this.handleChange } />
-
-                <button> Add TODO </button>
+                <input type="text" id='task' onChange={ this.handleChange } value={ this.state.task } />
             </form>
         )
     }

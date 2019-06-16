@@ -5,14 +5,24 @@ import AddTodos from './AddTodo';
 class App extends Component{
   state = {
     todos: [
-      { task: 'study', priority: 'high', id: 1 },
-      { task: 'practice', priority: 'high', id: 2},
-      { task: 'cooking', priority: 'low', id: 3 }
+      { task: 'study', id: 1 },
+      { task: 'practice', id: 2},
+      { task: 'cooking', id: 3 }
     ]
   }
 
   addTodos = (todo) =>  {
+    todo.id = Math.random();
     let todos = [...this.state.todos, todo];
+    this.setState({
+      todos:todos
+    })
+  }
+
+  deleteTodos = (id) => {
+    const todos = this.state.todos.filter( todo => {
+      return todo.id !== id;
+    })
     this.setState({
       todos: todos
     })
@@ -20,11 +30,11 @@ class App extends Component{
 
   render(){
     return(
-      <div className='App'>
-      <h1>TO DO</h1>
-      <h2>Get things done!</h2>
-      <Todos todos={ this.state.todos } />
-      <AddTodos addTodos={ this.addTodos } />
+      <div className="todo-app container">
+        <h1 className= "center blue-text">TO DO</h1>
+        <div className="center">Get things done!</div>
+        <Todos deleteTodos={ this.deleteTodos} todos={ this.state.todos } />
+        <AddTodos addTodos={ this.addTodos } />
       </div>
     )
   }
