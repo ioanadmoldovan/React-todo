@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Todos from './Todos';
 
-class AddTodos extends Component{
+class AddTodos extends Component {
 
     state = {
         task: ''
     }
     
-    handleChange = (e) => {
+    handleChange = ( e ) => {
         return(
             this.setState({
                 task: e.target.value
@@ -15,7 +15,7 @@ class AddTodos extends Component{
         )
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = ( e ) => {
         e.preventDefault();
         this.props.addTodos( this.state );
         this.setState({
@@ -23,7 +23,7 @@ class AddTodos extends Component{
         })
     }
 
-    render(){
+    render(){ 
         return(
             <form onSubmit={ this.handleSubmit }>
                 <label htmlFor={ 'task' }> Task: </label>

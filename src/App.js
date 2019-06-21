@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import Todos from './Todos';
 import AddTodos from './AddTodo';
 
-class App extends Component{
+class App extends Component {
   state = {
     todos: [
       { task: 'study', id: 1 },
-      { task: 'practice', id: 2},
+      { task: 'practice', id: 2 },
       { task: 'cooking', id: 3 }
     ]
   }
 
-  addTodos = (todo) =>  {
+  addTodos = ( todo ) =>  {
     todo.id = Math.random();
-    let todos = [...this.state.todos, todo];
+    let todos = [ ...this.state.todos, todo ];
     this.setState({
-      todos:todos
+      todos: todos
     })
   }
 
-  deleteTodos = (id) => {
+  deleteTodos = ( id ) => {
     const todos = this.state.todos.filter( todo => {
       return todo.id !== id;
     })
@@ -31,9 +31,9 @@ class App extends Component{
   render(){
     return(
       <div className="todo-app container">
-        <h1 className= "center blue-text">TO DO</h1>
-        <div className="center">Get things done!</div>
-        <Todos deleteTodos={ this.deleteTodos} todos={ this.state.todos } />
+        <h1 className= "center blue-text"> TO DO </h1>
+        <div className="center"> Get things done! </div>
+        <Todos deleteTodos={ this.deleteTodos } todos={ this.state.todos } />
         <AddTodos addTodos={ this.addTodos } />
       </div>
     )
